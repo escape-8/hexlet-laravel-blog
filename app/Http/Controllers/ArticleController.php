@@ -49,10 +49,6 @@ class ArticleController extends Controller
     public function update(StoreRequest $request, $id)
     {
         $article = Article::findOrFail($id);
-//        $data = $this->validate($request, [
-//            'name' => 'required|unique:articles,name,' . $article->id,
-//            'body' => 'required|min:100',
-//        ]);
         $data = $request->validated();
 
         $article->fill($data);
@@ -61,4 +57,6 @@ class ArticleController extends Controller
         return redirect()
             ->route('articles.index');
     }
+
+
 }
