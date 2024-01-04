@@ -4,6 +4,10 @@
     <div>{{ session('status') }}</div>
 @endif
 
+@if (session()->has('update'))
+    <div>{{ session('update') }}</div>
+@endif
+
 @section ('content')
     <a href="{{ route('articles.create') }}">Добавить статью</a>
     <h1>Список статей</h1>
@@ -12,5 +16,6 @@
         <div>
             {{Str::limit($article->body, 200)}}
         </div>
+        <a href="{{ route('articles.edit', $article->id) }}">Редактировать Статью</a>
     @endforeach
 @endsection
