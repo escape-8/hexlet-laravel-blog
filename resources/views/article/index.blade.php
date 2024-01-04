@@ -4,10 +4,6 @@
     <div>{{ session('status') }}</div>
 @endif
 
-@if (session()->has('update'))
-    <div>{{ session('update') }}</div>
-@endif
-
 @section ('content')
     <a href="{{ route('articles.create') }}">Добавить статью</a>
     <h1>Список статей</h1>
@@ -17,5 +13,7 @@
             {{Str::limit($article->body, 200)}}
         </div>
         <a href="{{ route('articles.edit', $article->id) }}">Редактировать Статью</a>
+        <a href="{{ route('articles.destroy', $article->id) }}" data-confirm="Вы уверены?" data-method="delete" rel="nofollow">Удалить</a>
     @endforeach
+    {{$articles->links()}}
 @endsection

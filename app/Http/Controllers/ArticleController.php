@@ -53,10 +53,19 @@ class ArticleController extends Controller
 
         $article->fill($data);
         $article->save();
-        $request->session()->flash('update', 'Статья обновлена!');
+        $request->session()->flash('status', 'Статья обновлена!');
         return redirect()
             ->route('articles.index');
     }
 
-
+    public function destroy(Request $request, $id)
+    {
+        $article = Article::findOrFail($id);
+        if ($article) {
+            $article->delete();
+        }
+        $request->session()->flash('status', 'Статья удалена!');
+        return redirect()
+            ->route('articles.index');
+    }
 }
