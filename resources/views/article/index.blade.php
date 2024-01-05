@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@if (session()->has('status'))
-    <div>{{ session('status') }}</div>
+@if (session()->has('success'))
+    <div>{{ session('success') }}</div>
 @endif
 
 @section ('content')
@@ -12,8 +12,8 @@
         <div>
             {{Str::limit($article->body, 200)}}
         </div>
-        <a href="{{ route('articles.edit', $article->id) }}">Редактировать Статью</a>
-        <a href="{{ route('articles.destroy', $article->id) }}" data-confirm="Вы уверены?" data-method="delete" rel="nofollow">Удалить</a>
+        <a href="{{ route('articles.edit', $article) }}">Редактировать Статью</a>
+        <a href="{{ route('articles.destroy', $article) }}" data-confirm="Вы уверены?" data-method="delete" rel="nofollow">Удалить</a>
     @endforeach
     {{$articles->links()}}
 @endsection

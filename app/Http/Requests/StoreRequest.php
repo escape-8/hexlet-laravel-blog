@@ -22,8 +22,7 @@ class StoreRequest extends FormRequest
      */
     public function rules(): array
     {
-        $articleId = $this->route('id');
-
+        $article = $this->route('article');
         switch($this->method())
         {
             case 'GET':
@@ -42,7 +41,7 @@ class StoreRequest extends FormRequest
             case 'PATCH':
             {
                 return [
-                    'name' => 'required|unique:articles,name,' . $articleId,
+                    'name' => 'required|unique:articles,name,' . $article->id,
                     'body' => 'required|min:100'
                 ];
             }
